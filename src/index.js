@@ -36,25 +36,68 @@ import reportWebVitals from './reportWebVitals';
 // }
 // setInterval(tick, 1000);
 
-class Clock extends React.Component {
+// class Clock extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {date: new Date()}
+//   }
+//
+//   componentDidMount() {
+//     this.timerID = setInterval(() => this.tick(),
+//         1000);
+//   }
+//
+//   componentWillUnmount() {
+//     clearInterval(this.timerID);
+//   }
+//
+//   tick() {
+//     this.setState({date: new Date()})
+//   }
+//
+//   render() {
+//     return (
+//       <div>
+//         <h1>Hello, world!</h1>
+//         <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
+//       </div>
+//     );
+//   }
+// }
+
+class Toggle extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {isToggleOn: true};
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    this.setState(prevState => ({
+      isToggleOn: !prevState.isToggleOn
+    }))
+  }
+
   render() {
     return (
-      <div>
-        <h1>Hello, world!</h1>
-        <h2>It is {this.props.date.toLocaleTimeString()}.</h2>
-      </div>
-    );
+        <button onClick={this.handleClick}>
+          {this.state.isToggleOn ? 'ON' : 'OFF'}
+        </button>
+    )
   }
 }
-
-function tick() {
-  ReactDOM.render(
-    <Clock date={new Date()} />,
+ReactDOM.render(
+    <Toggle />,
     document.getElementById('root')
-  );
-}
+);
+// function tick() {
+//   ReactDOM.render(
+//     <Clock />,
+//     document.getElementById('root')
+//   );
+// }
 
-setInterval(tick, 1000);
+// setInterval(tick, 1000);
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
